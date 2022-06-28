@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react"
+class App extends React.Component{
+    constructor(){
+    super();
+    this.state = {
+      counter: 0
+    }
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  handleDecrease = (e) => {
+     this.setState({counter: this.state.counter - 1 })
+    
+  }
+  
+  handleReset = () => {
+   this.setState({counter: 0} )
+   
+  }
+  handleIncrease = () => {
+     this.setState({counter: this.state.counter + 1})
+  }
+
+  render(){
+    const {counter} = this.state
+    return(
+      <div className='App'>
+          <h1>Counter</h1>
+          <p className= { counter > -1 ? "green" : "red" }>
+           {counter}
+           </p>
+           <button  onClick={this.handleDecrease}>Decrease</button>
+           <button  className='black'  onClick={this.handleReset}>Reset</button>
+           <button  onClick={this.handleIncrease}>Increase</button>
+      </div>
+    )
+  }
 }
 
 export default App;
